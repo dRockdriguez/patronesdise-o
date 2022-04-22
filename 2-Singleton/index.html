@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="./js/singleton.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item">
+            <h1>Singleton</h1>
+
+            <p>Es un patrón creacional que permite restringir la cantidad de instancias de una clase para que haya solamente una
+                instancia</p>
+
+            <pre>
+                class Singleton {
+                constructor() {
+                    if (Singleton.instance) {
+                    console.log("El singleton ya está instanciado");
+                    return Singleton.instance;
+                    }
+
+                    console.log("El singleton no está instanciado");
+
+                    this.random = Math.random();
+                    Singleton.instance = this;
+                }
+
+                static getInstance() {
+                    if (Singleton.instance) {
+                    console.log("El singleton ya está instanciado");
+                    return Singleton.instance;
+                    }
+
+                    console.log("El singleton no está instanciado");
+
+                    this.random = Math.random();
+                    Singleton.instance = this;
+                }
+                }
+
+                const singleton = new Singleton();
+                const singleton1 = new Singleton();
+                const singleton2 = Singleton.getInstance();
+
+                console.log(singleton.random);
+                console.log(singleton1.random);
+                console.log(singleton2.random);
+            </pre>
+
+            <p>Ejemplo</p>
+            <pre>
+                class WeekDays {
+                    weekDays = {
+                      es: [
+                        "Lunes",
+                        "Martes",
+                        "Miércoles",
+                        "Jueves",
+                        "Viernes",
+                        "Sábado",
+                        "Domingo",
+                      ],
+                      en: [
+                        "Sunday",
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        " Thrusday",
+                        "Friday",
+                        "Saturday",
+                      ],
+                    };
+                  
+                    constructor(lang) {
+                      if (WeekDays.instance) {
+                        return WeekDays.instance;
+                      }
+                  
+                      this.lang = lang;
+                      WeekDays.instance = this;
+                    }
+                  
+                    get days() {
+                        return this.weekDays[this.lang];
+                    }
+                  }
+                  
+                  const esDays = new WeekDays('es');
+                  console.log(esDays.days)
+            </pre>
+
+            <p>Singleton en typescript</p>
+
+            <pre>
+              class Singleton {
+                private static instance: Singleton;
+                public random: number;
+            
+                private constructor() {
+                    this.random = Math.random();
+                }
+            
+                public static getInstance(): Singleton {
+                    if (!this.instance) {
+                        this.instance = new Singleton();
+                    }
+                    return this.instance;
+                }
+              }
+              
+              const singleton = Singleton.getInstance();
+              const singleton1 = Singleton.getInstance();
+              
+              console.log(singleton.random);
+              console.log(singleton1.random);
+              
+              singleton.random = 18;
+              
+              console.log(singleton.random);
+              console.log(singleton1.random);
+            </pre>
+        </div>
+
+    </div>
+</body>
+
+</html>

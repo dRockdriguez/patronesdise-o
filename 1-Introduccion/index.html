@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item">
+            <h1>Introducción</h1>
+
+            <p>
+                Esto es una pequeña introducción a la programación funcional con JavaScript.
+            </p>
+        </div>
+        <div class="item">
+            <h3>1. Funciones de primer órden y de órden superior</h3>
+
+            <p>
+                Una función de primer orden es una función que puede ser tratada como una variable
+            </p>
+            <pre>
+                function sum(a, b) {
+                    return a + b;
+                }
+                const fSum = sum;
+                const result = fSum(1, 2);
+            </pre>
+
+            <p>
+                Una función de orden superior es una función que puede recibir otras funciones como parámetro
+            </p>
+            <pre>
+                function operation (fn, a, b) {
+                    console.log("Do something");
+                    console.log(fn(a, b));
+                }
+                operation(sum, 3, 4);
+            </pre>
+        </div>
+
+        <div class="item">
+            <h3>2. Arrow function</h3>
+
+            <p>
+                Una arrow function es una función anónima, es decir, no tiene nombre, se puede guardar en una variable.
+                No se utiliza la palabra function para definirlas y tiene cambios respecto al this. El this en
+                una arrow function tiene el contexto de donde esta se ejecuta, a diferencia de una function que el this
+                es la propia función.
+                Se puede crear directamente la función en el momento de invocar a la función de orden superior
+            </p>
+
+            <pre>
+                const fAnonim = () => {
+                    console.log("Hi from fAnonim");
+                };
+                fAnonim();  
+                operation((a, b) => a * b, 3, 4);
+            </pre>
+        </div>
+
+        <div class="item">
+            <h3>3. Principales métodos de arrays</h3>
+
+            <div class="sub-item">
+                <h4>forEach</h4>
+                <p>
+                    Es inmutable, es decir, el array original no cambiará. Este método no devuelve nada
+                </p>
+
+                <pre>
+                    const arr = [1, 2, 3, 4 ,5 ,6, 7, 8, 9, 10];
+                    arr.forEach((el, index) => {
+                    console.log(`El número ${el} está en el indice ${index}`);
+                    el = 3; // No va a mutar el array
+                    });
+                    console.log(arr)
+                </pre>
+            </div>
+            <div class="sub-item">
+                <h4>Map</h4>
+                <p>
+                    Tampoco muta el array, devolverá un array nuevo habiendo procesado todos los elementos del
+                    array
+                    original. Es decir, si el array original tiene 10 elementos, el resultado del map también tendrá 10
+                </p>
+
+                <pre>
+                    const arrToMap = [1, 2, 3, 4 ,5 ,6, 7, 8, 9, 10];
+                    const arrResult = arrToMap.map((el, index) => el + index);
+                    console.log(arrResult)
+                </pre>
+            </div>
+
+            <div class="sub-item">
+                <h4>Reduce</h4>
+                <p>
+                    Recorre todos los elementos y hace un acumulado procesandolos, es decir, para un array de n
+                    elementos reduce solo devuelve un resultado.
+                    Recibe dos parámetros, uno es la función y otra el valor inicial que tendrá el acumulador
+                </p>
+
+                <pre>
+                    const arrToReduce = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                    const resultReduce = arrToReduce.reduce((acc, el) => {
+                      return acc + el
+                    }, 0);
+                    console.log(resultReduce)
+                </pre>
+            </div>
+        </div>
+
+        <div class="item">
+            <h3>4. Clases y objetos</h3>
+
+            <p>
+                Las funciones son objetos en javascript, podemos crear objetos de diferentes formas
+            </p>
+
+            <pre>
+                class Example {
+                    constructor(prop1) {
+                      this.prop1 = prop1;
+                    }
+                  
+                    info() {
+                      return `El valor del prop1 es ${this.prop1}`;
+                    }
+                }
+                const example = new Example("prop1");
+                console.log(example.info());
+            </pre>
+
+            <pre>
+                function Example1(prop1) {
+                    this.prop1 = prop1;
+                    this.info = () => {
+                      return `El valor del prop1 es ${this.prop1}`;
+                    };
+                }
+                const example1 = new Example1('prop1')
+                console.log(example1.info());
+            </pre>
+
+            <p>
+                Podemos hacer herencia de clases de la siguiente forma
+            </p>
+
+            <pre>
+                class Example2 extends Example {
+                    constructor(prop1, prop2) {
+                      super(prop1);
+                      this.prop2 = prop2
+                    }
+                  
+                    info() {
+                      return `El valor del prop1 es ${this.prop1}, el de prop2 es ${this.prop2}`;
+                    }
+                }
+                const example2 = new Example2("prop1", "prop2");
+                console.log(example.info());
+            </pre>
+        </div>
+
+        <div class="item">
+            <h3>5. Clases y en typescript</h3>
+
+            <pre>
+               class Example {
+                    private prop: string;
+
+                    constructor(prop: string) {
+                        this.prop = prop;
+                    }
+
+                    info(): string {
+                        return `El valor de prop es: ${this.prop}`
+                    }
+                }
+
+                const example = new Example('prop');
+                console.log(example.info());
+            </pre>
+
+            <p>
+                Podemos hacer herencia de clases de la siguiente forma
+            </p>
+
+            <pre>
+                class Example1 extends Example {
+                    private prop2: number;
+                
+                    constructor(prop: string, prop2: number) {
+                        super(prop);
+                        this.prop2 = prop2;
+                    }
+                
+                    info(): string {
+                        return `El valor de prop es ${this.prop} y el de prop2 es ${this.prop2}`
+                    }
+                }
+                const example1 = new Example1('prop', 2);
+                console.log(example1.info());
+            </pre>
+
+            <p>
+                Interfaces
+            </p>
+
+            <pre>
+                interface Example2 {
+                    prop1: string,
+                    prop2: number,
+                    info(): string
+                }
+                class ExampleInterface implements Example2 {
+                    prop1: string;
+                    prop2: number;
+
+                    constructor(prop1: string, prop2: number) {
+                        this.prop1 = prop1;
+                        this.prop2 = prop2;
+                    }
+
+                    info(): string {
+                        return `El valor de prop es ${this.prop} y el de prop2 es ${this.prop2}`
+                    }
+                }
+                
+                class ExampleInterface1 implements Example2 {
+                    prop1: string;
+                    prop2: number;
+                    prop3: string;
+                
+                    constructor(prop1: string, prop2: number, prop3: string) {
+                        this.prop1 = prop1;
+                        this.prop2 = prop2;
+                        this.prop3 = prop3;
+                    }
+                
+                    info(): string {
+                        return `El valor de prop es ${this.prop1}, el de prop2 es ${this.prop2} y prop 3 es ${this.prop3}`
+                    }
+                }
+                
+                const arr: Example2[] = [new ExampleInterface('prop1', 1), new ExampleInterface1('prop1', 1, 'prop3')];
+            </pre>
+        </div>
+
+    </div>
+</body>
+
+</html>
