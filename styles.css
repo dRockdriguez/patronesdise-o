@@ -45,3 +45,20 @@ pre {
     margin: .5rem;
     color: #1c1d1f;
 }
+
+select {
+  will-change: 50%;
+  padding: 1rem;
+  margin: .5rem;
+}
+
+.beer {
+  padding: 1rem;
+  border: 1px solid #fafafafa;
+  border-radius: .5rem;
+  margin: .5rem;
+}
+
+.beer img {
+  width: 100px;
+}

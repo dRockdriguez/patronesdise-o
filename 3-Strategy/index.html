@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item">
+            <h1>Strategy</h1>
+
+            <p>Es un patrón de comportamiento, nos ayuda a tener diferentes comportamientos y añadir nuevos a un objeto
+                sin modificar el contexto inicial</p>
+
+            <pre>
+                class SaleContext {
+                    constructor(strategy) {
+                        this.strategy = strategy;
+                    }
+                
+                    setStrategy(strategy) {
+                        this.strategy = strategy;
+                    }
+                
+                    calculate(amount) {
+                        return this.strategy.calculate(amount);
+                    }
+                }
+                
+                class RegularSaleStrategy {
+                    constructor(tax) {
+                        this.tax = tax;
+                    }
+                
+                    calculate(amount) {
+                        return amount + (amount * this.tax);
+                    }
+                }
+                
+                class DiscountSaleStrategy {
+                    constructor(tax, discount) {
+                        this.tax = tax;
+                        this.discount = discount;
+                    }
+                
+                    calculate(amount) {
+                        return amount + (amount * this.tax) - this.discount;
+                    }
+                }
+                
+                const regularStrategy = new RegularSaleStrategy(0.15);
+                const discountStrategy = new DiscountSaleStrategy(0.15, 1);
+                
+                const sale = new SaleContext(regularStrategy);
+                console.log(sale.calculate(100))
+                
+                sale.setStrategy(discountStrategy);
+                console.log(sale.calculate(100))
+            </pre>
+
+            <p>Ejemplo real</p>
+            <div>
+                <select id="options">
+                    <option value="0">Lista</option>
+                    <option value="1">Lista con detalle</option>
+                </select>
+            </div>
+            <div id="content">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./js/strategy.js"></script>
+</body>
+
+</html>
