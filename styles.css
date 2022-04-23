@@ -37,6 +37,11 @@ body {
     margin-top: 1rem;
 }
 
+.patternImg{
+  margin: 1rem auto;
+  width: 60%;
+}
+
 pre {
     border: 1px solid gray;
     padding: .5rem;
