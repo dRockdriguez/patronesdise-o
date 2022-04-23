@@ -21,11 +21,60 @@
                 Esto nos permite no tener que crear sucesivas clases que hereden de la primera incorporando la nueva
                 funcionalidad, sino otras que la implementan y se asocian a la primera.
             </p>
+
+            <pre>
+                // Component
+                class GreetingComponent {
+                    constructor(name) {
+                        this.name = name;
+                    }
+
+                    getGreeting() {
+                        return `Hello ${this.name}`;
+                    }
+                }
+
+                // Decorator
+                class GreetingDecorator {
+                    constructor(greeting) {
+                        this.greeting = greeting;
+                    }
+                    
+                    getGreeting() {
+                        return this.greeting.getGreeting();
+                    }
+                }
+
+                class GreetingDetailDecorator extends GreetingDecorator {
+                    constructor(greeting, gender) {
+                        super(greeting);
+                        this.gender = gender;
+                    }
+
+                    getGreeting() {
+                        return `${super.getGreeting()} eres ${this.gender}`;
+                    }
+                }
+
+                const greeting = new GreetingComponent('David');
+                console.log(greeting.getGreeting());
+
+                const detail = new GreetingDetailDecorator(greeting, 'H');
+                console.log(detail.getGreeting());
+            </pre>
+
+            <div class="sub-item">
+                <div class="box">
+                    <div id="divContent1"></div>
+                    <div id="divContent2"></div>
+                </div>
+            </div>
         </div>
 
     </div>
 
     <script src="./js/decorator.js"></script>
+    <script src="./js/info.js"></script>
 </body>
 
 </html>

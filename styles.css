@@ -57,7 +57,7 @@ select, input{
   margin: .5rem;
 }
 
-.beer, .result {
+.beer, .result, .box {
   padding: 1rem;
   border: 1px solid #fafafafa;
   border-radius: .5rem;
@@ -67,4 +67,13 @@ select, input{
 
 .beer img {
   width: 100px;
+}
+
+.box {
+  display: flex;
+  flex-flow: wrap;
+}
+.box > div {
+  border: 1px solid #fafafafa;
+  flex: 0 0 48%;
 }
