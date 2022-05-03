@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Builder</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item">
+            <h1>Builder</h1>
+
+            <img class="patternImg" src="Builder.png">
+
+            <p>
+                Es un patrón creacional, nos permite construir objetos complejos paso a paso. El patrón nos permite
+                producir distintos tipos y representaciones de un objeto empleando el mismo código de construcción.
+            </p>
+
+            <pre>
+                // product
+                class Person {
+                constructor(name, lastName, age, country, city, hobbies) {
+                    this.name = name;
+                    this.lastName = lastName;
+                    this.age = age;
+                    this.country = country;
+                    this.city = city;
+                    this.hobbies = hobbies;
+                }
+
+                getFullName() {
+                    return `${this.name} ${this.lastName}`;
+                }
+                }
+
+                // concrete builder
+                class PersonBuilder {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.name = "";
+                    this.lastName = "";
+                    this.age = "";
+                    this.country = "";
+                    this.city = "";
+                    this.hobbies = [];
+                }
+
+                setName(name) {
+                    this.name = name;
+                    return this;
+                }
+
+                setLastName(lastName) {
+                    this.lastName = lastName;
+                    return this;
+                }
+
+                setAge(age) {
+                    this.age = age;
+                    return this;
+                }
+
+                setCountry(country) {
+                    this.country = country;
+                    return this;
+                }
+
+                setCity(city) {
+                    this.city = city;
+                    return this;
+                }
+
+                addHobby(hobby) {
+                    this.hobbies.push(hobby);
+                    return this;
+                }
+
+                build() {
+                    const person = new Person(
+                    this.name,
+                    this.lastName,
+                    this.age,
+                    this.country,
+                    this.city,
+                    this.hobbies
+                    );
+
+                    this.reset();
+
+                    return person;
+                }
+                }
+
+                const builder = new PersonBuilder();
+
+                const p = builder
+                .setName("David")
+                .setLastName("Rodriguez")
+                .setAge(32)
+                .setCountry("Spain")
+                .setCity("Madrid")
+                .addHobby("Música")
+                .build();
+
+                console.table(p);
+            </pre>
+
+
+        </div>
+
+    </div>
+
+    <script src="./js/builder.js"></script>
+</body>
+
+</html>
