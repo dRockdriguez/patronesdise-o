@@ -23,9 +23,8 @@ class Ball {
   }
 
   draw() {
-    this.ctx.fillRect(this.x, this.y, this.size, this.size);
     this.ctx.fillStyle = this.color;
-    this.ctx.fill();
+    this.ctx.fillRect(this.x, this.y, this.size, this.size);
   }
 }
 
@@ -111,6 +110,7 @@ const ball = new Ball(
 ball.print();
 ball.setState(new RightState());
 
+
 const ball1 = new Ball(
   ctx,
   40,
@@ -127,6 +127,7 @@ const ball1 = new Ball(
 ball1.print();
 ball1.setState(new RightState());
 
+
 const ball2 = new Ball(
   ctx,
   80,
@@ -137,7 +138,8 @@ const ball2 = new Ball(
   80,
   20,
   5,
-  "red"
+  "red",
+  "ball2"
 );
 ball2.print();
 ball2.setState(new RightState());
@@ -152,7 +154,8 @@ const ball3 = new Ball(
   120,
   20,
   5,
-  "yellow"
+  "yellow",
+  "ball3"
 );
 ball3.print();
 ball3.setState(new RightState());
