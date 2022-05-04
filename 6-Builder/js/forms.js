@@ -77,6 +77,26 @@ class FormBuilder {
   }
 }
 
+class FormDirector {
+  constructor(formBuilder) {
+    this.setBuilder(formBuilder);
+  }
+
+  setBuilder(formBuilder) {
+    this.formBuilder = formBuilder;
+  }
+
+  createPeopleForm() {
+    this.formBuilder.reset();
+    this.formBuilder.setText("name", "Nombre").setText("lastName", "Apellidos");
+  }
+
+  createContactForm() {
+    this.formBuilder.reset();
+    this.formBuilder.setText("name", "Nombre").setText("message", "Mensaje");
+  }
+}
+
 const frmBuilder = new FormBuilder();
 const formPeople = frmBuilder
   .setText("name", "Nombre")
@@ -90,7 +110,6 @@ const formPeople = frmBuilder
 
 document.querySelector("#form1").innerHTML = formPeople.getContent();
 
-
 const formPets = frmBuilder
   .setText("name", "Nombre")
   .setSelect("animal", "Animal", [
@@ -101,3 +120,10 @@ const formPets = frmBuilder
   .build();
 
 document.querySelector("#form2").innerHTML = formPets.getContent();
+
+const director = new FormDirector(frmBuilder);
+director.createPeopleForm();
+document.querySelector("#form3").innerHTML = frmBuilder.build().getContent();
+
+director.createContactForm();
+document.querySelector("#form4").innerHTML = frmBuilder.build().getContent();
