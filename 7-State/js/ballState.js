@@ -103,13 +103,12 @@ const ball = new Ball(
   0,
   0,
   20,
-  5,
+  20,
   "green",
   "ball"
 );
 ball.print();
 ball.setState(new RightState());
-
 
 const ball1 = new Ball(
   ctx,
@@ -120,13 +119,12 @@ const ball1 = new Ball(
   40,
   40,
   20,
-  5,
+  20,
   "blue",
   "ball1"
 );
 ball1.print();
 ball1.setState(new RightState());
-
 
 const ball2 = new Ball(
   ctx,
@@ -137,7 +135,7 @@ const ball2 = new Ball(
   80,
   80,
   20,
-  5,
+  20,
   "red",
   "ball2"
 );
@@ -153,16 +151,84 @@ const ball3 = new Ball(
   120,
   120,
   20,
-  5,
+  20,
   "yellow",
   "ball3"
 );
 ball3.print();
 ball3.setState(new RightState());
 
+const ball4 = new Ball(
+  ctx,
+  20,
+  canvas.width - 20,
+  20,
+  canvas.height - 20,
+  20,
+  20,
+  20,
+  20,
+  "pink",
+  "ball4"
+);
+ball4.print();
+ball4.setState(new RightState());
+
+const ball5 = new Ball(
+  ctx,
+  60,
+  canvas.width - 60,
+  60,
+  canvas.height - 60,
+  60,
+  60,
+  20,
+  20,
+  "gray",
+  "ball5"
+);
+ball5.print();
+ball5.setState(new RightState());
+
+const ball6 = new Ball(
+  ctx,
+  100,
+  canvas.width - 100,
+  100,
+  canvas.height - 100,
+  100,
+  100,
+  20,
+  20,
+  "tomato",
+  "ball6"
+);
+ball6.print();
+ball6.setState(new RightState());
+
+const ball7 = new Ball(
+  ctx,
+  140,
+  canvas.width - 140,
+  140,
+  canvas.height - 140,
+  140,
+  140,
+  20,
+  20,
+  "purple",
+  "ball7"
+);
+ball7.print();
+ball7.setState(new RightState());
+
 setInterval(() => {
   ball.print();
   ball1.print();
   ball2.print();
   ball3.print();
+  ball4.print();
+  ball5.print();
+  ball6.print();
+  ball7.print();
 }, 10);
