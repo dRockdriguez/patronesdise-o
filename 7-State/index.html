@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item">
+            <h1>State</h1>
+
+            <img class="patternImg" src="State.png">
+
+            <p>
+                Es un patrón de comportamiento,  permite a un objeto alterar su comportamiento cuando su estado interno cambia. Parece como si el objeto cambiara su clase.
+            </p>
+
+            <pre>
+                class DocumentContext {
+                    constructor() {
+                        this.content = "";
+                        this.setState(new BlankState());
+                    }
+                
+                    setState(state) {
+                        this.state = state;
+                    }
+                
+                    write(text) {
+                        this.state.write(this, text);
+                    }
+                }
+                
+                class BlankState {
+                    write(context, text) {
+                        context.content = text;
+                        context.setState(new EditContent());
+                    }
+                }
+                
+                class EditContent {
+                    write(context, text) {
+                        context.content +=  " " + text;
+                    }
+                }
+                
+                class ApproveContent {
+                    write(context, text) {
+                        console.error("El contenido no se puede modificar, ya está aprobado")
+                    }
+                }
+                
+                const doc = new DocumentContext();
+                
+                doc.write("Hola");
+                console.log(doc.content);
+                doc.write("que tal");
+                console.log(doc.content);
+                doc.write("como estás");
+                console.log(doc.content);
+                doc.setState(new ApproveContent());
+                doc.write("amigo");
+                console.log(doc.content);
+                doc.setState(new EditContent());
+                doc.write("amigo");
+                console.log(doc.content);
+            </pre>
+        </div>
+
+        <canvas width="400" height="400" id="canvas"></canvas>
+
+    </div>
+
+    <script src="./js/state.js"></script>
+    <script src="./js/ballState.js"></script>
+</body>
+
+</html>

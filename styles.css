@@ -77,3 +77,7 @@ select, input{
   border: 1px solid #fafafafa;
   flex: 0 0 48%;
 }
+
+canvas {
+  border: 1px solid #fafafafa;
+}
